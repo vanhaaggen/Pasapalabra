@@ -207,7 +207,7 @@ function checkAnswer(){
         let userScore = document.getElementById('user-score')
         let winGif = document.getElementsByClassName('img-gif')[0];
         let lostGif = document.getElementsByClassName('img-gif')[1];
-        let msg = `${countHits < 14 ? 'Esto no es lo tuyo...' : 'Eres un maquina!'}`
+        let msg = `${countHits < 14 ? 'Esto no es lo tuyo...' : 'Que Máquina!'}`
 
         stopTimer();
         addToScore(window.user, countHits, [minutes.innerHTML+':'+seconds.innerHTML], countFails);
@@ -226,7 +226,7 @@ function checkAnswer(){
                 message.innerHTML = `Otro día será!`
                 lostGif.style.display = 'block';
             }
-            userScore.innerHTML = `<p>Tu resultado<br><span class="user-score-color">${window.user}</span>, has acertado un total de <span class="user-score-color">${countHits}</span> preguntas<br/>en <span class="user-score-color">${minutes.innerHTML}:${seconds.innerHTML}</span> min. <span class="user-score-color">${msg}</span></p>`
+            userScore.innerHTML = `<p><span class="user-score-color">${window.user}</span>, has acertado un total de <span class="user-score-color">${countHits}</span> preguntas<br/>en <span class="user-score-color">${minutes.innerHTML}:${seconds.innerHTML}</span> min. <span class="user-score-color">${msg}</span></p>`
         },1000)
         
         console.log('all true')
@@ -259,7 +259,8 @@ function pasapalabra(){
 
     letters.style.background = 'rgba(245, 245, 245, 0.3)';
     letters.style.color = '#0050b3'
-    letters.style.fontWeight = 'bold'
+    letters.style.fontWeight = 'bold';
+    letters.style.borderColor = '#2ac2f9'
     output.innerHTML = 'Pasando'
     counter++
     startGame();
@@ -270,10 +271,16 @@ function pause(){
     let output = document.getElementById('result')
     if(toggleTimer == false){
         stopTimer();
+        document.getElementById('answerInn').disabled = true;
+        document.getElementById('submit').disabled = true;
+        document.getElementById('pasa').disabled = true;
         toggleTimer = true;
         output.innerHTML = 'En pausa!'
     }else{
         startTimer();
+        document.getElementById('answerInn').disabled = false;
+        document.getElementById('submit').disabled = false;
+        document.getElementById('pasa').disabled = false;
         toggleTimer = false;
         output.innerHTML = ''
     }
